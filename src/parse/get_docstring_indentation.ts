@@ -8,6 +8,11 @@ export function getDocstringIndentation(
     const lines = document.split("\n");
     const definitionPattern = /\b(((async\s+)?\s*def)|\s*class)\b/g;
 
+    // Don't indent at start of document
+    if (linePosition == 0) {
+        return ''
+    }
+
     let currentLineNum = linePosition;
 
     while (currentLineNum >= 0) {
