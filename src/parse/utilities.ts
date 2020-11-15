@@ -34,3 +34,13 @@ export function getDefaultIndentation(useSpaces: boolean, tabSize: number): stri
 
     return " ".repeat(tabSize);
 }
+
+export function moduleDocstring(document: string, linePosition: number): boolean {
+    if (linePosition == 0) {
+        return true
+    }
+    const lines = document.split("\n")
+    const startLines = preprocessLines(lines.slice(0, linePosition))
+        .filter(line => !blankLine(line))
+    return startLines.length == 0
+}

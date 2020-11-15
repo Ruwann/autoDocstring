@@ -1,4 +1,4 @@
-import { blankLine, getIndentation } from "./utilities";
+import { blankLine, getIndentation, moduleDocstring } from "./utilities";
 
 export function getDocstringIndentation(
     document: string,
@@ -8,8 +8,8 @@ export function getDocstringIndentation(
     const lines = document.split("\n");
     const definitionPattern = /\b(((async\s+)?\s*def)|\s*class)\b/g;
 
-    // Don't indent at start of document
-    if (linePosition == 0) {
+    // Don't indent if module docstring
+    if (moduleDocstring(document, linePosition)) {
         return ''
     }
 
